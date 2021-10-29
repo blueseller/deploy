@@ -1,8 +1,8 @@
 package main
 
 import (
-	"deploy/cmd/interactive"
-	"deploy/version"
+	"github.com/blueseller/deploy/cmd/interactive"
+	"github.com/blueseller/deploy/version"
 
 	"github.com/spf13/cobra"
 )
