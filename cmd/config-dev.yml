@@ -1,6 +1,41 @@
 version: 1.0
 log:
-  level: debug
+  loglevel: trace
+  logPath: log.txt
   fields:
     service: registry
     environment: development
+cmdflow:
+  1:
+    name: "start cmd"
+    desc: "start cmd"
+    nextcmdsteps:
+      - 2
+      - 3
+    commands:
+      - name: "deploy all"
+        desc: "部署全部服务"
+  2:
+    name: "deploy"
+    desc: "整体部署"
+    commands:
+      - name: "deploy all"
+        desc: "部署全部服务"
+      - name: "deploy service"
+        desc: "部署一个服务,包含服务和migration"
+      - name: "deploy service only"
+        desc: "只部署服务"
+      - name: "deploy migration only"
+        desc: "只部署服务的migration"
+  3:
+    name: "config"
+    desc: "配置"
+    commands:
+      - name: "deploy config all"
+        desc: "刷新配置"
+      - name: "deploy config only"
+        desc: "刷新一个服务"
+      - name: "deploy config diff"
+        desc: "查看配置差异"
+      - name: "deploy config diff only"
+        desc: "查看某一个配置差异"

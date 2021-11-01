@@ -6,8 +6,11 @@ type Version string
 type Configuration struct {
 	Version Version `yaml: "version,omitempty"`
 	Log     struct {
-		LogLevel LogLevel `yaml: "level,omitempty"`
+		LogType string `yaml: "log_type,omitempty"`
 
+		LogLevel LogLevel `yaml: "loglevel,omitempty"`
+
+		// 支持 text、json、logstash
 		Formatter string `yaml: "formatter,omitempty"`
 
 		Fields map[interface{}]interface{} `yaml: "fields,omitempty"`
@@ -24,7 +27,27 @@ type Configuration struct {
 		Mongo DbStruct `yaml: "mongo, omitempty"`
 	} `yaml: "db", omitempty`
 
-	//MapTest map[string]map[string]interface{} `yaml: "maptest", omitempty`
+	// 测试用key， 后期删除
+	MapTest map[string]map[string]interface{} `yaml: "maptest", omitempty`
+
+	CmdFlow CmdFlow `yaml: "cmdflow", omitempty`
+}
+
+type CmdStep int
+
+type CmdFlow map[CmdStep]FlowCommand
+
+type FlowCommand struct {
+	Name         string    `yaml: "name", omitempty`
+	Desc         string    `yaml: "desc", omitempty`
+	NextCmdSteps []CmdStep `yaml: "nextcmdsteps", omitempty`
+	Commands     []Command `yaml: "commands", omitempty`
+}
+
+type Command struct {
+	Name string   `yaml: "name", omitempty`
+	Desc string   `yaml: "desc", omitempty`
+	Args []string `yaml: "args", omitempty`
 }
 
 type DbStruct struct {
