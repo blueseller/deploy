@@ -4,8 +4,9 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"time"
 
-	"github.com/blueseller/deploy/cmd/interactive/workflow"
+	"github.com/blueseller/deploy/cmd/interactive/flow"
 	"github.com/blueseller/deploy/configure"
 	"github.com/blueseller/deploy/logger"
 
@@ -37,7 +38,7 @@ var interactiveCmd = &cobra.Command{
 		}
 
 		// 开始监听命令行输入
-		workflow.StartInteractive(ctx, config)
+		StartInteractive(ctx, config)
 	},
 }
 
@@ -77,4 +78,18 @@ func initLoggerLevel(ctx context.Context, config *configure.Configuration) {
 		logrus.Warnf("error parse log level %+s : %v, using %q", string(config.Log.LogLevel), err, level)
 	}
 	logrus.SetLevel(level)
+}
+
+func StartInteractive(ctx context.Context, config *configure.Configuration) {
+	flowSrv := flow.NewCmdFlow(config)
+	err := flow.InitCmd(ctx, config.CmdFlow)
+	if err != nil {
+		logrus.Fatalf("init cmd flow data is error, %v", err)
+	}
+	for {
+		// 获取现在可执行的命令
+		flowSrv.GetWorkflowCmd(ctx)
+
+		time.Sleep(1 * time.Second)
+	}
 }

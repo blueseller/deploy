@@ -1,4 +1,4 @@
-package cmdflow
+package flow
 
 import (
 	"bufio"
