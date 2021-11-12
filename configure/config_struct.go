@@ -38,6 +38,7 @@ type CmdStep int
 type CmdFlow map[CmdStep]FlowCommand
 
 type FlowCommand struct {
+	Num          CmdStep   `yaml: "num", omitempty`
 	Name         string    `yaml: "name", omitempty`
 	Desc         string    `yaml: "desc", omitempty`
 	NextCmdSteps []CmdStep `yaml: "nextcmdsteps", omitempty`
@@ -45,9 +46,10 @@ type FlowCommand struct {
 }
 
 type Command struct {
-	Name string   `yaml: "name", omitempty`
-	Desc string   `yaml: "desc", omitempty`
-	Args []string `yaml: "args", omitempty`
+	Name   string   `yaml: "name", omitempty`
+	Desc   string   `yaml: "desc", omitempty`
+	Hander string   `yaml: "hander", omitempty`
+	Args   []string `yaml: "args", omitempty`
 }
 
 type DbStruct struct {

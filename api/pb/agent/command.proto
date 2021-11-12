@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package monitor;
+
+option go_package = "github.com/blueseller/deploy/api/pb/agent/command";
+import "common.proto";
+
+service CommandSerivce {
+	rpc Command(stream Cmd) returns (stream Cmd) {}
+}
+
+enum CmdType {
+	NONE = 0;
+	// 要求上报机器状态
+	STAT_REPORT = 1;
+
+	// 要求进行自我升级
+	UPDATE      = 2;
+
+	// 要求执行一些命令
+	COMMAND_RUN = 3;
+
+	// 要求执行一些命令
+	INSTALL_SOFT = 4;
+
+}
+
+
+message Cmd {
+	common.AgentId agent_id = 1;
+
+	CmdType cmd_type = 2;
+
+	bytes payload = 3;
+
+	Result result = 4;
+}
+
+message Result {
+	int32 err_code = 1;
+
+	string err_msg = 2;
+}

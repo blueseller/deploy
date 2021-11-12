@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package monitor;
+
+option go_package = "./monitor";
+import "common.proto";
+
+service MonitorSerivce {
+	rpc MachineStateReport(MachineMonitor) returns (MachineMonitor) {}
+}
+
+message CpuMonitor {
+
+	string cpu_usage= 1;
+
+	string cpu_loadavg = 2;
+
+	string cpu_loadavg5m = 3;
+
+	string cpu_loadavg15m = 4;
+
+}
+
+message MemMoitor {
+	string mem_used = 1;
+
+	string mem_usage = 2;
+}
+
+message DiskMonitor{
+	string cvm_disk_usage = 1;
+}
+
+message NetMonitor{
+	// 单位 Mbps
+	string lan_out_traffic = 1;
+
+	string lan_in_traffic = 2;
+
+	string lan_out_pkg = 3;
+
+	string lan_in_pkg = 4;
+
+	string wan_out_traffic = 5;
+
+	string wan_in_traffic = 6;
+
+	string wan_out_pkg = 7;
+
+	string wan_in_pkg = 8;
+
+	string acc_out_traffic = 9;
+
+	string tcp_curr_estab = 10;
+
+	string time_offset = 11;
+}
+
+message MachineMonitor {
+
+	common.AgentId agent_id = 1;
+
+	CpuMonitor cpu_monitor = 2;
+
+	MemMoitor mem_monitor = 3;
+
+	NetMonitor net_monitor = 4;
+
+	DiskMonitor disk_monitor = 5;
+}
+

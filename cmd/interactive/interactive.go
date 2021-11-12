@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"os"
-	"time"
 
 	"github.com/blueseller/deploy/cmd/interactive/flow"
 	"github.com/blueseller/deploy/configure"
@@ -82,14 +81,25 @@ func initLoggerLevel(ctx context.Context, config *configure.Configuration) {
 
 func StartInteractive(ctx context.Context, config *configure.Configuration) {
 	flowSrv := flow.NewCmdFlow(config)
-	err := flow.InitCmd(ctx, config.CmdFlow)
+	var err error
+	ctx, err = flowSrv.InitCmd(ctx, config.CmdFlow)
 	if err != nil {
 		logrus.Fatalf("init cmd flow data is error, %v", err)
 	}
 	for {
 		// 获取现在可执行的命令
-		flowSrv.GetWorkflowCmd(ctx)
+		selectList := flowSrv.GetWorkflowCmd(ctx)
 
-		time.Sleep(1 * time.Second)
+		// 等待用户的输入
+		next := flowSrv.WaitStdin(selectList)
+
+		// 处理输入内容
+		ctx = flowSrv.ExecInput(ctx, selectList, next)
+
+		// 执行命令
+		err = flowSrv.DoHander(ctx)
+		if err != nil {
+			logrus.Fatalf("exec input command is error, %v", err)
+		}
 	}
 }

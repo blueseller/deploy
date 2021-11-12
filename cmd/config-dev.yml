@@ -16,11 +16,13 @@ cmdflow:
       - name: "deploy all"
         desc: "部署全部服务"
   2:
+    num: 2
     name: "deploy"
     desc: "整体部署"
     commands:
       - name: "deploy all"
         desc: "部署全部服务"
+        hander: "/do/this"
       - name: "deploy service"
         desc: "部署一个服务,包含服务和migration"
       - name: "deploy service only"
@@ -28,6 +30,7 @@ cmdflow:
       - name: "deploy migration only"
         desc: "只部署服务的migration"
   3:
+    num: 3
     name: "config"
     desc: "配置"
     commands:
