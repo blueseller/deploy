@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/blueseller/deploy/cmd/agent"
 	"github.com/blueseller/deploy/cmd/interactive"
 	"github.com/blueseller/deploy/version"
 
@@ -12,6 +13,9 @@ var showVersion bool
 func init() {
 	RootCmd.Flags().BoolVarP(&showVersion, "version", "v", false, "show the version and exit")
 	interactive.RegistrySubCommand(RootCmd)
+	agent.RegistrySubCommand(RootCmd)
+
+	cobra.OnInitialize(initConfig)
 }
 
 var RootCmd = &cobra.Command{

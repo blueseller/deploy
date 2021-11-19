@@ -151,7 +151,7 @@ func (c *CmdFlow) ExecInput(ctx context.Context, selectList map[InputNum]interfa
 		ctx = dcontext.WithCommandStep(ctx, val.(configure.FlowCommand).Num)
 	case configure.Command:
 		logger.GetContextLogger(ctx).Tracef("选择了一个可执行的命令, %d", val.(configure.Command).Hander)
-		ctx = dcontext.WithCommand(ctx, val)
+		ctx = dcontext.WithCommand(ctx, val.(configure.Command))
 	case configure.CmdStep:
 		logger.GetContextLogger(ctx).Tracef("选择了返回上级")
 		inputHistory := dcontext.CommandStep(ctx)

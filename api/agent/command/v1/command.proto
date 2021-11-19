@@ -5,7 +5,7 @@ package agent.command.v1;
 option go_package = "github.com/blueseller/deploy/api/agent/command/v1;command";
 import "github.com/blueseller/deploy/api/agent/types/types.proto";
 
-service CommandSerivce {
+service StreamCommandSerivce {
 	rpc Command(stream Cmd) returns (stream Cmd) {}
 }
 
@@ -14,15 +14,17 @@ enum CmdType {
 	// 要求上报机器状态
 	STAT_REPORT = 1;
 
-	// 要求进行自我升级
+	// 要求进行agent自我升级
 	UPDATE      = 2;
 
-	// 要求执行一些命令
+	// 运行一些指令
 	COMMAND_RUN = 3;
 
-	// 要求执行一些命令
+	// 要求执行安装命令
 	INSTALL_SOFT = 4;
 
+	// 要求执行安装命令
+	LOG_AGGREGATE = 5;
 }
 
 
@@ -40,4 +42,6 @@ message Result {
 	int32 err_code = 1;
 
 	string err_msg = 2;
+
+	string out_put = 3;
 }
