@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package heartbeat;
+
+option go_package = "github.com/blueseller/deploy/api/agent/heartbeat/v1;heartbeat";
+
+import "github.com/blueseller/deploy/api/agent/types/types.proto";
+
+service MonitorSerivce {
+	rpc LiveState(stream HeartBeat) returns (stream HeartBeat) {}
+}
+
+
+message HeartBeat {
+	agent.types.AgentId agent_id = 1;
+
+	int64 connectID = 2;
+}

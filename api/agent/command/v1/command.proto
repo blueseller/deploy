@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package monitor;
+package agent.command.v1;
 
-option go_package = "github.com/blueseller/deploy/api/pb/agent/command";
-import "common.proto";
+option go_package = "github.com/blueseller/deploy/api/agent/command/v1;command";
+import "github.com/blueseller/deploy/api/agent/types/types.proto";
 
 service CommandSerivce {
 	rpc Command(stream Cmd) returns (stream Cmd) {}
@@ -27,7 +27,7 @@ enum CmdType {
 
 
 message Cmd {
-	common.AgentId agent_id = 1;
+	agent.types.AgentId agent_id = 1;
 
 	CmdType cmd_type = 2;
 

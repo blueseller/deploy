@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.27.1
 // 	protoc        v3.11.4
-// source: common.proto
+// source: types.proto
 
-package common
+package types
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -32,7 +32,7 @@ type AgentId struct {
 func (x *AgentId) Reset() {
 	*x = AgentId{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_common_proto_msgTypes[0]
+		mi := &file_types_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -45,7 +45,7 @@ func (x *AgentId) String() string {
 func (*AgentId) ProtoMessage() {}
 
 func (x *AgentId) ProtoReflect() protoreflect.Message {
-	mi := &file_common_proto_msgTypes[0]
+	mi := &file_types_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +58,7 @@ func (x *AgentId) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AgentId.ProtoReflect.Descriptor instead.
 func (*AgentId) Descriptor() ([]byte, []int) {
-	return file_common_proto_rawDescGZIP(), []int{0}
+	return file_types_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *AgentId) GetId() string {
@@ -75,34 +75,37 @@ func (x *AgentId) GetIp() string {
 	return ""
 }
 
-var File_common_proto protoreflect.FileDescriptor
+var File_types_proto protoreflect.FileDescriptor
 
-var file_common_proto_rawDesc = []byte{
-	0x0a, 0x0c, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x06,
-	0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x22, 0x29, 0x0a, 0x07, 0x41, 0x67, 0x65, 0x6e, 0x74, 0x49,
-	0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69,
-	0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x70, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69,
-	0x70, 0x42, 0x0a, 0x5a, 0x08, 0x2e, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+var file_types_proto_rawDesc = []byte{
+	0x0a, 0x0b, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0b, 0x61,
+	0x67, 0x65, 0x6e, 0x74, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x22, 0x29, 0x0a, 0x07, 0x41, 0x67,
+	0x65, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x70, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x02, 0x69, 0x70, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
+	0x63, 0x6f, 0x6d, 0x2f, 0x62, 0x6c, 0x75, 0x65, 0x73, 0x65, 0x6c, 0x6c, 0x65, 0x72, 0x2f, 0x64,
+	0x65, 0x70, 0x6c, 0x6f, 0x79, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2f,
+	0x74, 0x79, 0x70, 0x65, 0x73, 0x2f, 0x3b, 0x74, 0x79, 0x70, 0x65, 0x73, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_common_proto_rawDescOnce sync.Once
-	file_common_proto_rawDescData = file_common_proto_rawDesc
+	file_types_proto_rawDescOnce sync.Once
+	file_types_proto_rawDescData = file_types_proto_rawDesc
 )
 
-func file_common_proto_rawDescGZIP() []byte {
-	file_common_proto_rawDescOnce.Do(func() {
-		file_common_proto_rawDescData = protoimpl.X.CompressGZIP(file_common_proto_rawDescData)
+func file_types_proto_rawDescGZIP() []byte {
+	file_types_proto_rawDescOnce.Do(func() {
+		file_types_proto_rawDescData = protoimpl.X.CompressGZIP(file_types_proto_rawDescData)
 	})
-	return file_common_proto_rawDescData
+	return file_types_proto_rawDescData
 }
 
-var file_common_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_common_proto_goTypes = []interface{}{
-	(*AgentId)(nil), // 0: common.AgentId
+var file_types_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_types_proto_goTypes = []interface{}{
+	(*AgentId)(nil), // 0: agent.types.AgentId
 }
-var file_common_proto_depIdxs = []int32{
+var file_types_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -110,13 +113,13 @@ var file_common_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_common_proto_init() }
-func file_common_proto_init() {
-	if File_common_proto != nil {
+func init() { file_types_proto_init() }
+func file_types_proto_init() {
+	if File_types_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_common_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_types_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AgentId); i {
 			case 0:
 				return &v.state
@@ -133,18 +136,18 @@ func file_common_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_common_proto_rawDesc,
+			RawDescriptor: file_types_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_common_proto_goTypes,
-		DependencyIndexes: file_common_proto_depIdxs,
-		MessageInfos:      file_common_proto_msgTypes,
+		GoTypes:           file_types_proto_goTypes,
+		DependencyIndexes: file_types_proto_depIdxs,
+		MessageInfos:      file_types_proto_msgTypes,
 	}.Build()
-	File_common_proto = out.File
-	file_common_proto_rawDesc = nil
-	file_common_proto_goTypes = nil
-	file_common_proto_depIdxs = nil
+	File_types_proto = out.File
+	file_types_proto_rawDesc = nil
+	file_types_proto_goTypes = nil
+	file_types_proto_depIdxs = nil
 }
