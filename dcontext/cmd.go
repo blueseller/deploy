@@ -3,7 +3,7 @@ package dcontext
 import (
 	"context"
 
-	"github.com/blueseller/deploy/configure"
+	"github.com/blueseller/deploy.git/configure"
 )
 
 type commandKey struct{}

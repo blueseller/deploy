@@ -3,7 +3,7 @@ package api
 import (
 	"github.com/gorilla/mux"
 
-	"github.com/blueseller/deploy/deploy/paas"
+	"github.com/blueseller/deploy.git/deploy/paas"
 )
 
 var r *mux.Router
