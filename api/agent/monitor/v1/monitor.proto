@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package monitor;
 
-option go_package = "github.com/blueseller/deploy/api/agent/monitor/v1;monitor";
+option go_package = "github.com/blueseller/deploy.git/api/agent/monitor/v1;monitor";
 
-import "github.com/blueseller/deploy/api/agent/types/types.proto";
+import "github.com/blueseller/deploy.git/api/agent/types/types.proto";
 
 service MonitorSerivce {
 	rpc MachineStateReport(MachineMonitor) returns (MachineMonitor) {}

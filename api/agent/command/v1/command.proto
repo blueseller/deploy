@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package agent.command.v1;
 
-option go_package = "github.com/blueseller/deploy/api/agent/command/v1;command";
-import "github.com/blueseller/deploy/api/agent/types/types.proto";
+option go_package = "github.com/blueseller/deploy.git/api/agent/command/v1;command";
+import "github.com/blueseller/deploy.git/api/agent/types/types.proto";
 
 service StreamCommandSerivce {
 	rpc Command(stream Cmd) returns (stream Cmd) {}
@@ -33,9 +33,11 @@ message Cmd {
 
 	CmdType cmd_type = 2;
 
-	bytes payload = 3;
+	string cmd_id = 3;
 
-	Result result = 4;
+	bytes payload = 4;
+
+	Result result = 5;
 }
 
 message Result {

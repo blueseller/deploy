@@ -6,7 +6,7 @@ import (
 	"log"
 	"net"
 
-	commandPb "github.com/blueseller/deploy/api/agent/command/v1"
+	commandPb "github.com/blueseller/deploy.git/api/agent/command/v1"
 	"google.golang.org/grpc"
 )
 
@@ -26,7 +26,7 @@ func Run(ctx context.Context) error {
 	server := grpc.NewServer()
 	commandPb.RegisterStreamCommandSerivceServer(server, &CommandServices{})
 
-	lis, err := net.Listen("tcp", ":9528")
+	lis, err := net.Listen("tcp", ip+":"+port)
 	if err != nil {
 		log.Fatalf("net.Listen err: %v", err)
 

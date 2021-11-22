@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/blueseller/deploy/configure"
+	"github.com/blueseller/deploy.git/configure"
 	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
 )

@@ -8,9 +8,9 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/blueseller/deploy/configure"
-	"github.com/blueseller/deploy/dcontext"
-	"github.com/blueseller/deploy/logger"
+	"github.com/blueseller/deploy.git/configure"
+	"github.com/blueseller/deploy.git/dcontext"
+	"github.com/blueseller/deploy.git/logger"
 )
 
 var UpStep configure.CmdStep = 9999
@@ -53,6 +53,9 @@ func (c *CmdFlow) InitCmd(ctx context.Context, cmdFlowStruct configure.CmdFlow) 
 
 	// sort
 	sort.Ints(flowStepSort)
+	if len(flowStepSort) <= 0 {
+		logger.GetContextLogger(ctx).Fatalf("this is no command first step, please check you yaml input is correct")
+	}
 	ctx = dcontext.WithCommandStep(ctx, configure.CmdStep(flowStepSort[0]))
 	c.cmdStep = cmdFlowStruct
 	c.headerStep = configure.CmdStep(flowStepSort[0])

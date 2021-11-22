@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package agent.types;
 
-option go_package = "github.com/blueseller/deploy/api/agent/types;types";
+option go_package = "github.com/blueseller/deploy.git/api/agent/types;types";
 
 message AgentId {
 	string id = 1;

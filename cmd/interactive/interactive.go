@@ -2,10 +2,12 @@ package interactive
 
 import (
 	"context"
+	"fmt"
 
+	"github.com/blueseller/deploy.git/cmd/common"
+	"github.com/blueseller/deploy.git/cmd/interactive/flow"
+	"github.com/blueseller/deploy.git/configure"
 	"github.com/blueseller/deploy.git/dcontext"
-	"github.com/blueseller/deploy/cmd/interactive/flow"
-	"github.com/blueseller/deploy/configure"
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -16,9 +18,10 @@ func RegistrySubCommand(rootCmd *cobra.Command) {
 }
 
 var interactiveCmd = &cobra.Command{
-	Use:   "interactive",
-	Short: "interactive",
-	Long:  "interactive",
+	Use:    "interactive",
+	Short:  "interactive",
+	Long:   "interactive",
+	PreRun: common.PreCmdRun,
 	Run: func(cmd *cobra.Command, args []string) {
 		//ctx := context.Background()
 
@@ -35,6 +38,7 @@ var interactiveCmd = &cobra.Command{
 		//	}
 
 		config := configure.GetConfig()
+		fmt.Println("config is ", config)
 		ctx := dcontext.GetDContext()
 
 		// 开始监听命令行输入
