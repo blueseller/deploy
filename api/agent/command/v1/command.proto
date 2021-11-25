@@ -25,6 +25,8 @@ enum CmdType {
 
 	// 要求执行安装命令
 	LOG_AGGREGATE = 5;
+
+	CLIENT_REGISTER = 6;
 }
 
 

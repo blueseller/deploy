@@ -2,7 +2,9 @@ package agent
 
 import (
 	"context"
+	"fmt"
 	"os"
+	"strings"
 
 	agtMaster "github.com/blueseller/deploy.git/agent/chief"
 	agtReplica "github.com/blueseller/deploy.git/agent/replica"
@@ -13,10 +15,10 @@ import (
 )
 
 func init() {
-	agentMasterCmd.Flags().StringP("port", "p", ":54321", "agent master listen port")
-	agentMasterCmd.Flags().StringP("ip", "i", "", "agent master listen port")
+	agentMasterCmd.Flags().StringP("port", "p", ":15151", "agent master listen port")
+	agentMasterCmd.Flags().StringP("ip", "i", "", "agent master listen ip")
 
-	agentCmd.Flags().StringP("address", "a", "", "please input agnet master addr")
+	agentCmd.Flags().StringP("addr", "a", "", "please input agnet master address")
 	agentCmd.MarkFlagRequired("addr")
 }
 
@@ -27,14 +29,14 @@ var agentCmd = &cobra.Command{
 	PreRun: common.PreCmdRun,
 	Run: func(cmd *cobra.Command, args []string) {
 		ctx := context.Background()
+		//addr := cmd.Flag("addr").Value.String()
 		addr, err := cmd.Flags().GetString("addr")
 		if err != nil {
 			logger.GetContextLogger(ctx).Fatalf("input params addr is error. errmsg:%s", err.Error())
 		}
+		fmt.Println(addr, err)
 
-		err = agtReplica.Run(ctx, addr)
-		if err != nil {
-		}
+		agtReplica.Run(ctx, addr)
 	},
 }
 
@@ -52,13 +54,13 @@ var agentMasterCmd = &cobra.Command{
 		if port == "" && os.Getenv("DEPLOY_AGENT_MASTER_PORT") != "" {
 			port = os.Getenv("DEPLOY_AGENT_MASTER_PORT")
 		}
+		port = strings.ReplaceAll(port, ":", "")
 		ctx = dcontext.WithAgentMasterIp(ctx, ip)
 		ctx = dcontext.WithAgentMasterPort(ctx, port)
 
+		logger.GetContextLogger(ctx).Debugf("get ip input is:%s, get port input is %s", ip, port)
 		// 启动agent master 服务
-		err := agtMaster.Run(ctx)
-		if err != nil {
-		}
+		agtMaster.Run(ctx)
 	},
 }
 
